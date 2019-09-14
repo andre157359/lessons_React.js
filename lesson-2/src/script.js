@@ -1,42 +1,42 @@
 function butoon() {
-    return 'button';
+  return 'button';
 }
 
 class Slider {
-    constructor(width, height, count) {
-        this.width = width;
-        this.height = height;
-        this.count = count;
-    }
-    nexSlider() {
-        console.log('Test');
+  constructor(width, height, count) {
+    this.width = width;
+    this.height = height;
+    this.count = count;
+  }
 
-    }
-    prevSlider() {
-        console.log('Test1');
+  nexSlider() {
+    console.log('Test');
+  }
 
-    }
-    whoAmI() {
-        console.log(this.width, this.height, this.count);
+  prevSlider() {
+    console.log('Test1');
+  }
 
-    }
+  whoAmI() {
+    console.log(this.width, this.height, this.count);
+  }
+
 }
 
 class AutoSlider extends Slider {
-    constructor (width, height, count, auto) {
-        super(width, height, count);
-        this.auto = auto;
-    }
-    play() {
-        console.log(`Autoplay: ${this.auto}`);
-        
-    }
-}
+  constructor(width, height, count, auto) {
+    super(width, height, count);
+    this.auto = auto;
+  }
 
-// const slider = new AutoSlider(500, 500, 4, true);
+  play() {
+    console.log(`Autoplay: ${this.auto}`);
+  }
+
+} // const slider = new AutoSlider(500, 500, 4, true);
 // slider.whoAmI();
 // slider.play();
 
-export {butoon};
 
+export { butoon };
 export default Slider;
