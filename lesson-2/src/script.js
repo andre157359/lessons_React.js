@@ -22,8 +22,21 @@ class Slider {
     }
 }
 
-const slider = new Slider(600, 400, 5);
-someSlider = new Slider(500, 300, 10)
+class AutoSlider extends Slider {
+    constructor (width, height, count, auto) {
+        super(width, height, count);
+        this.auto = auto;
+    }
+    play() {
+        console.log(`Autoplay: ${this.auto}`);
+        
+    }
+}
 
-slider.whoAmI();
-someSlider.whoAmI();
+// const slider = new AutoSlider(500, 500, 4, true);
+// slider.whoAmI();
+// slider.play();
+
+export {butoon};
+
+export default Slider;
