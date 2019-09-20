@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import AppHeader from '../app-header';
 import SearchPannal from '../search-panel';
@@ -8,17 +8,54 @@ import PostAddForm from '../post-add-form';
 
 import './app.css';
 
-const App = () => {
+export default class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data : [
+        {lable: 'Goin to lealrn React', important: true, id: '1' },   
+        {lable: 'Goin to lealrn React 1', important: false, id: '2'  },
+        {lable: 'Goin to lealrn React 2', important: false, id: '3' }
+    ]
+        };
+        this.deleteItem = this.deleteItem.bind(this);   
+        this.addItem = this.addItem.bind(this);   
+
+        this.maxId = 4;
+    }
+
+    deleteItem(id) {
+        this.setState(({data}) => {
+            const index =data.findIndex(elem => elem.id === id);
+
+           
+
+            const newArr = [...data.slice(0, index), ...data.slice(index + 1)];
+
+            return {
+                data: newArr
+            }
+        });
+        
+    }
+
+    addItem(body) {
+        const newItem = {
+            lable: body,
+            important: false,
+            id: this.maxId++
+        }
+        this.setState(({data}) => {
+            const newArr = [...data, newItem];
+            return {
+                data: newArr
+            }
+
+        })
+    }
 
 
-    const data = [
-        {lable: 'Goin to lealrn React', important: true, id: 'wdwa' },   
-        {lable: 'Goin to lealrn React 1', important: false, id: 'wefwef'  },
-        {lable: 'Goin to lealrn React 2', important: false, id: 'qsewd' }
-    ];
-
-
-
+  render() {
     return ( 
         <div className = "app">
             <AppHeader/> 
@@ -26,12 +63,14 @@ const App = () => {
               <SearchPannal/> 
               <PostStatysFilter/>
           </div>
-          <PostList posts = {data} />
-          <PostAddForm/>
+          <PostList 
+                posts = {this.state.data}
+                onDelete = {this.deleteItem}/>
+          <PostAddForm
+            onAdd = {this.addItem}/>
         </div>
         
         
     )
+  }
 }
-
-export default App;
