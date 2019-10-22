@@ -25,17 +25,17 @@ export default class GotService {
         const res = await this.getResourse('/houses/');
         return res.map(this._transformCharacter)
     }
-    getHouses = async (id) => {
-        const houses = await this.getResourse(`/houses/${id}`);
-        return this._transformHouse(houses);
+    getHouse = async (id) => {
+        const house = await this.getResourse(`/houses/${id}`);
+        return this._transformHouse(house);
     }
     getAllBooks = async () => {
         const res = await this.getResourse('/books/');
         return res.map(this._transformCharacter)
     }
-    getBooks = async (id) => {
-        const books = await this.getResourse(`/books/${id}`);
-        return this._transformBook(books);
+    getBook = async (id) => {
+        const book = await this.getResourse(`/books/${id}`);
+        return this._transformBook(book);
     }
 
     isiSet(data) {

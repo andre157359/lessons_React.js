@@ -4,7 +4,9 @@ import Header from '../header';
 import RandomChar from '../randomChar';
 import ErrorMessage from '../errorMessage';
 import CharacterPage from '../characterPage';
-// import BtnClose from '../btn_close';
+import BookPage from '../bookPage';
+import HousePage from '../housePage';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 import './app.css';
 import ItemList from '../itemList';
@@ -48,7 +50,8 @@ export default class App extends Component {
         }
 
         return (
-                    <> 
+            <Router>
+                <div className = 'app'> 
                         <Container>
                             <Header />
                         </Container>
@@ -62,34 +65,15 @@ export default class App extends Component {
                                         >Toggle random character</button>
                                 </Col>
                             </Row>
+
+                            <Route path = '/characters' component = {CharacterPage} />
+
                             <CharacterPage/>
-                            <Row>
-                                <Col md = '6' >
-                                    <ItemList 
-                                        onItemSelected = {this.onItemSelected}
-                                        getDate = {this.gotService.getAllBooks}
-                                        renderItem = {(item) => item.name}
-                                        />
-                                </Col>
-                                <Col md = '6' >
-                                    <CharDetails charId = {this.selectedChar}/>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md = '6' >
-                                    <ItemList 
-                                        onItemSelected = {this.onItemSelected}
-                                        getDate = {this.gotService.getAllHouses}
-                                        renderItem = {(item) => item.name}
-                                        />
-                                </Col>
-                                <Col md = '6' >
-                                    <CharDetails charId = {this.selectedChar}/>
-                                </Col>
-                            </Row>
+                            <BookPage/>
+                            <HousePage/>
                         </Container>
-                    </>
-    
+                    </div>
+            </Router>
         )
     }
 };

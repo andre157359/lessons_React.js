@@ -1,23 +1,23 @@
 import React, {Component} from 'react';
 import ItemList from '../itemList';
-import CharDetails, {Field} from '../charDetails';
+import BookDetails, {Field} from '../bookDetails';
 import ErrorMessage from '../errorMessage';
 import gotService from '../../services/gotService';
 import RowBlock from '../RowBlock';
 
 
-export default class CharacterPage extends Component {
+export default class BookPage extends Component {
 
     gotService = new gotService();
 
     state = {
-        selectedChar: 20,
+        selectedBook: 5,
         error: false
     }
 
     onItemSelected = (id) => {
         this.setState({
-            selectedChar: id
+            selectedBook: id
 
         })
     }
@@ -39,21 +39,20 @@ export default class CharacterPage extends Component {
         const itemList = (
             <ItemList 
                 onItemSelected = {this.onItemSelected}
-                getDate = {this.gotService.getAllCharacterc}
-                renderItem = {({name, gender}) => `${name} (${gender})` }/>
+                getDate = {this.gotService.getAllBooks}
+                renderItem = {({name}) => `${name}` }/>
         )
 
-        const charDetails = (
-            <CharDetails charId = {this.state.selectedChar}>
-                <Field field = 'gender' lable = 'Gender' />
-                <Field field = 'born' lable = 'Born' />
-                <Field field = 'died' lable = 'Died' />
-                <Field field = 'culture' lable = 'Culture' />
-            </CharDetails>
+        const bookDetails = (
+            <BookDetails bookId = {this.state.selectedBook}>
+                <Field field = 'numberOfPages' lable = 'NumberOfPages' />
+                <Field field = 'publister' lable = 'Publister' />
+                <Field field = 'released' lable = 'Released' />
+            </BookDetails>
         )
 
         return (
-            <RowBlock left = {itemList} right = {charDetails}/>
+            <RowBlock left = {itemList} right = {bookDetails}/>
         )
     }
 }
