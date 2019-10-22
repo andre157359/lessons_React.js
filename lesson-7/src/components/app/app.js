@@ -7,10 +7,10 @@ import CharacterPage from '../characterPage';
 import BookPage from '../bookPage';
 import HousePage from '../housePage';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import BooksItem from '../booksItem';
 
 import './app.css';
-import ItemList from '../itemList';
-import CharDetails from '../charDetails';
+
 
 import gotService from '../../services/gotService';
 
@@ -65,12 +65,14 @@ export default class App extends Component {
                                         >Toggle random character</button>
                                 </Col>
                             </Row>
-
-                            <Route path = '/characters' component = {CharacterPage} />
-
-                            <CharacterPage/>
-                            <BookPage/>
-                            <HousePage/>
+                            <Route path = '/characters' component = {CharacterPage}/>
+                            <Route path = '/houses' component = {HousePage}/>
+                            <Route path = '/books' exact component = {BookPage}/>
+                            <Route path = '/books/:id' render = {
+                                ({match}) => {
+                                    const {id} = match.params;
+                               return <BooksItem bookId = {id} />}
+                            } />
                         </Container>
                     </div>
             </Router>
